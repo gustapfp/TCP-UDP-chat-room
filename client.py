@@ -55,7 +55,7 @@ def client_recive():
 
 def client_send():
     while True:
-        user_msg = f"{username}: {input('...')}"
+        user_msg = f"{username}: {input('->')}"
         client.send(user_msg.encode(FORMAT))
 
        

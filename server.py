@@ -61,16 +61,16 @@ def handle_client(conn, addr):
     while True:
         try:
             msg_length = conn.recv(HEADER) # Define how many bites we will recive from the client
-            broadcast(msg) # send the message for everyone in the room
-            if msg_length: # checking if the message isn't null or none
-                msg_length = int(msg_length.decode(FORMAT)) # Decode from byte to UTF format
-                msg = conn.recv(msg_length).decode(FORMAT)
-                if msg == DISCONECT_MESSAGE:
-                    connected = False
-                print(f"[{addr}] send: {msg}")
+            broadcast(msg_length) # send the message for everyone in the room
+            # if msg_length: # checking if the message isn't null or none
+            #     msg_length = int(msg_length.decode(FORMAT)) # Decode from byte to UTF format
+            #     msg = conn.recv(msg_length).decode(FORMAT)
+            #     if msg == DISCONECT_MESSAGE:
+            #         connected = False
+            #     print(f"[{addr}] send: {msg}")
 
-                # Send a message to the client
-                conn.send("[MESSAGE RECIVED] ...".encode(FORMAT))
+            #     # Send a message to the client
+            #     conn.send("[MESSAGE RECIVED] ...".encode(FORMAT))
         except:
             index = clients.index(conn)
             clients.remove(conn)
